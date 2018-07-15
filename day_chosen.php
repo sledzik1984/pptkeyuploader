@@ -6,7 +6,9 @@ include 'mysql.php';
 
 //Post VARS
 $event_id = $_POST['event_id'];
-$room = $_POST['room'];
+$room_id = $_POST['room_id'];
+$day_id = $_POST['day_id'];
+
 
 echo "<!DOCTYPE html>\n";
 echo "<html lang=\"pl\">\n<head>\n<title>System obsługi prezentacji</title>\n";
@@ -16,7 +18,9 @@ echo "<div class=\"form-style-8\">\n";
 echo "<form name=\"day\" action=\"day_chosen.php\" method=\"POST\">\n";
 echo "<select name=\"date\" id=\"date\">\n";
 //Query
-$sql = "SELECT * FROM `dates` WHERE `event_id` = '$event_id' AND `room_id` = '$room' ORDER BY `date` ASC";
+$sql = "SELECT * FROM `prezentacje` WHERE `event_id` = '$event_id' AND `room_id` = '$room_id' ORDER BY `timestart` ASC";
+
+echo $sql;
 
 if(!$result = $db->query($sql)){
     die('There was an error running the query [' . $db->error . ']');
@@ -24,37 +28,24 @@ if(!$result = $db->query($sql)){
 
 
 while($row = $result->fetch_assoc()){
-	$date_id = $row['id'];
-	$date = $row['date'];
+	$ppt_id = $row['id'];
+	$timestart = $row['timestart'];
+	$timestart_human = date("d-m-Y H:i", $timestart);
+	$title = $row['title'];
+	$imie = $row['firstname'];
+	$nazwisko = $row['lastname'];
 
-	$sql_room_name = "SELECT `roomname` FROM `rooms` WHERE `id` = '$room'";
-
-	if(!$result_room = $db->query($sql_room_name)){
-		die('There was an error running the query [' . $db->error . ']');
-	}
-
-
-	while($row_room = $result_room->fetch_assoc()){
-
-		$room_name = $row_room['roomname'];
+	$select = $timestart_human . ": ".$title.", prelegent: " .$imie." ".$nazwisko;
 
 
-	}
-
-
-	$date_human = date("d-m-Y", $date) . ", Sala: " . $room_name;
-
-
-	echo "<option value=\"".$date_id."\">".$date_human."</option>\n";
+	echo "<option value=\"".$ppt_id."\">".$select."</option>\n";
 
 }
 echo "</select>\n";
-echo "<input type=\"hidden\" name=\"room_id\" id=\"room_id\" value=\"".$room."\">\n";
-echo "<input type=\"hidden\" name=\"event_id\" id=\"event_id\" value=\"".$room."\">\n";
 
 
 echo "<br>\n";
-echo "<input type=\"submit\" value=\"Wybierz dzień wykładu\">\n";
+echo "<input type=\"submit\" value=\"Wybierz wykład\">\n";
 
 echo "</form></div>\n";
 echo "</body>\n</html>";

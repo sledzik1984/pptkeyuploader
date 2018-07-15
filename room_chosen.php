@@ -14,7 +14,7 @@ echo "<link rel=\"stylesheet\" href=\"css/style.css\">\n";
 echo "</head>\n<body>\n";
 echo "<div class=\"form-style-8\">\n";
 echo "<form name=\"day\" action=\"day_chosen.php\" method=\"POST\">\n";
-echo "<select name=\"date\" id=\"date\">\n";
+echo "<select name=\"day_id\" id=\"day_id\">\n";
 //Query
 $sql = "SELECT * FROM `dates` WHERE `event_id` = '$event_id' AND `room_id` = '$room' ORDER BY `date` ASC";
 
