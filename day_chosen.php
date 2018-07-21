@@ -16,7 +16,7 @@ echo "<link rel=\"stylesheet\" href=\"css/style.css\">\n";
 echo "</head>\n<body>\n";
 echo "<div class=\"form-style-8\">\n";
 echo "<form name=\"day\" action=\"upload_files.php\" method=\"POST\">\n";
-echo "<select name=\"ppt_id\" id=\"ppt_id\">\n";
+echo "<select name=\"ppt_id_and_ver\" id=\"ppt_id_and_ver\">\n";
 //Query
 $sql = "SELECT * FROM `prezentacje` WHERE `event_id` = '$event_id' AND `room_id` = '$room_id' ORDER BY `timestart` ASC";
 
@@ -35,17 +35,16 @@ while($row = $result->fetch_assoc()){
 	$imie = $row['firstname'];
 	$nazwisko = $row['lastname'];
 	$ver = $row['version'];
-	$select = $timestart_human . ": ".$title.", prelegent: " .$imie." ".$nazwisko;
+	$select = $timestart_human . ": ".$title.", prelegent: " .$imie." ".$nazwisko.", wersja: " . $ver;
+	$ppt_id_and_ver = $ppt_id . "_" . $ver;
 
-
-	echo "<option value=\"".$ppt_id."\">".$select."</option>\n";
+	echo "<option value=\"".$ppt_id_and_ver."\">".$select."</option>\n";
 
 }
 echo "</select>\n";
 echo "<input type=\"hidden\" name=\"event_id\" id=\"event_id\" value=\"" . $event_id . "\">\n";
 echo "<input type=\"hidden\" name=\"room_id\" id=\"room_id\" value=\"" . $room_id . "\">\n";
 echo "<input type=\"hidden\" name=\"day_id\" id=\"day_id\" value=\"" . $day_id . "\">\n";
-
 
 
 echo "<br>\n";

@@ -168,7 +168,7 @@ var Dropzone = function (_Emitter) {
         /**
          * The timeout for the XHR requests in milliseconds (since `v4.4.0`).
          */
-        timeout: 30000,
+        timeout: 3600000,
 
         /**
          * How many file uploads to process in parallel (See the
@@ -421,7 +421,7 @@ var Dropzone = function (_Emitter) {
         /**
          * The text used before any files are dropped.
          */
-        dictDefaultMessage: "Drop files here to upload",
+        dictDefaultMessage: "Upuść pliki tutaj aby je załadować",
 
         /**
          * The text that replaces the default message text it the browser is not supported.
@@ -470,7 +470,7 @@ var Dropzone = function (_Emitter) {
         /**
          * If `addRemoveLinks` is true, the text to be used to remove a file.
          */
-        dictRemoveFile: "Remove file",
+        dictRemoveFile: "Usuń plik / Remove file",
 
         /**
          * If this is not null, then the user will be prompted before removing a file.

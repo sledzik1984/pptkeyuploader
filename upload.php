@@ -8,7 +8,7 @@ $event_id = $_POST['event_id'];
 $room_id = $_POST['room_id'];
 $day_id = $_POST['day_id'];
 $ppt_id = $_POST['ppt_id'];
-
+$ppt_ver = $_POST['ppt_ver'];
 
 
 
@@ -71,7 +71,8 @@ while($row_ppt = $result_ppt->fetch_assoc()){
 	$ppt_timestamp = $row_ppt['timestart'];
 	$ppt_date = date("Hi", $ppt_timestamp);
 	$title = $row_ppt['title'];
-	$ppt_ver = $row_ppt['version'];
+
+	$ppt_folder = $ppt_date . "_" . $title;
 
 }
 
@@ -80,10 +81,14 @@ while($row_ppt = $result_ppt->fetch_assoc()){
 if (!empty($_FILES)) {
 
     $tempFile = $_FILES['file']['tmp_name'];
-    $targetPath = "/var/www/html/pptkeyuploader/uploads/".$event_folder."/".$date."/".$room_folder."/";
+    $targetPath = "/var/www/html/pptkeyuploader/uploads/".$event_folder."/".$date."/".$room_folder."/".$ppt_folder."/".$ppt_ver."/";
+    echo $targetPath;
+
+
 
     if (!is_dir($targetPath)) {
-		mkdir($targetPath);
+		echo "Tworzę KATALOG";
+		mkdir($targetPath, 0777, true);
     }
 
     $targetFile =  $targetPath. $_FILES['file']['name'];
