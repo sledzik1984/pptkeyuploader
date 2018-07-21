@@ -18,7 +18,7 @@ echo "<div class=\"form-style-8\">\n";
 echo "<form name=\"day\" action=\"upload_files.php\" method=\"POST\">\n";
 echo "<select name=\"ppt_id_and_ver\" id=\"ppt_id_and_ver\">\n";
 //Query
-$sql = "SELECT * FROM `prezentacje` WHERE `event_id` = '$event_id' AND `room_id` = '$room_id' ORDER BY `timestart` ASC";
+$sql = "SELECT * FROM `prezentacje` WHERE `event_id` = '$event_id' AND `room_id` = '$room_id' AND `day_id` = '$day_id' ORDER BY `timestart` ASC";
 
 //echo $sql;
 

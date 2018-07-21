@@ -70,9 +70,11 @@ if(!$result_ppt = $db->query($sql_ppt)){
 while($row_ppt = $result_ppt->fetch_assoc()){
 	$ppt_timestamp = $row_ppt['timestart'];
 	$ppt_date = date("Hi", $ppt_timestamp);
+	$firstname = $row_ppt['firstname'];
+	$lastname = $row_ppt['lastname'];
 	$title = $row_ppt['title'];
 
-	$ppt_folder = $ppt_date . "_" . $title;
+	$ppt_folder = $ppt_date . "_" . $firstname . "_" . $lastname . "_" . $title;
 
 }
 
